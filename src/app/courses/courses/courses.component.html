@@ -1,37 +1,54 @@
-<div class="container d-flex justify-content-center align-items-center w-100 flex-column mt-2">
-  <mat-toolbar class="bg-info text-white fw-bold">
+<div
+  class="container d-flex justify-content-center align-items-center w-100 flex-column mt-2"
+>
+  <mat-card
+    class="d-flex justify-content-center align-items-center flex-column w-100 shadow-lg"
+  >
+    <mat-toolbar class="bg-info text-white fw-bold">
       <span>Cursos Disponíveis</span>
-  </mat-toolbar>
-  <mat-card class="w-100">
-    <mat-table [dataSource]="courses">
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
-        <mat-card-header>
+    </mat-toolbar>
+    @if (courses$ | async; as courses) {
+    <div class="w-100">
+      <mat-table [dataSource]="courses">
+        <ng-container matColumnDef="name">
+          <mat-header-cell class="justify-content-start align-items-center" *matHeaderCellDef> <h2 class="m-0 p-0"> Nome </h2> </mat-header-cell>
+          <mat-card-header>
+            <mat-cell
+              *matCellDef="let curso"
+              class="d-flex justify-content-start align-items-center"
+            >
+              <mat-card-title class="align-items-center">{{
+                curso.name
+              }}</mat-card-title>
+            </mat-cell>
+          </mat-card-header>
+        </ng-container>
+
+        <ng-container matColumnDef="category">
+          <mat-header-cell class="justify-content-start align-items-center" *matHeaderCellDef> <h2 class="m-0 p-0"> Categoria </h2> </mat-header-cell>
           <mat-cell
             *matCellDef="let curso"
             class="d-flex justify-content-start align-items-center"
           >
-            <mat-card-title class="align-items-center text-center">{{
-              curso.name
+            <mat-card-title class="align-items-center">{{
+              curso.category
             }}</mat-card-title>
           </mat-cell>
-        </mat-card-header>
-      </ng-container>
+        </ng-container>
 
-      <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef> Categoria </mat-header-cell>
-        <mat-cell
-          *matCellDef="let curso"
-          class="d-flex justify-content-start align-items-center"
-        >
-          <mat-card-content class="align-items-center text-center">{{
-            curso.category
-          }}</mat-card-content>
-        </mat-cell>
-      </ng-container>
+        <mat-header-row
+          *matHeaderRowDef="['name', 'category']"
+        ></mat-header-row>
+        <mat-row
+          *matRowDef="let curso; columns: ['name', 'category']"
+        ></mat-row>
+      </mat-table>
+    </div>
 
-      <mat-header-row *matHeaderRowDef="['name', 'category']"></mat-header-row>
-      <mat-row *matRowDef="let curso; columns: ['name', 'category']"></mat-row>
-    </mat-table>
+    } @else {
+    <div class="d-flex justify-content-center align-items-center w-100 bg-secondary bg-secondary bg-opacity-50 p-4">
+      <mat-spinner></mat-spinner>
+    </div>
+    }
   </mat-card>
 </div>
