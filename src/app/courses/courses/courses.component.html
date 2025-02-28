@@ -1,8 +1,11 @@
-<div class="container d-flex justify-content-center align-items-center w-100">
+<div class="container d-flex justify-content-center align-items-center w-100 flex-column mt-2">
+  <mat-toolbar class="bg-info text-white fw-bold">
+      <span>Cursos Disponíveis</span>
+  </mat-toolbar>
   <mat-card class="w-100">
     <mat-table [dataSource]="courses">
       <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Curso </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
         <mat-card-header>
           <mat-cell
             *matCellDef="let curso"
