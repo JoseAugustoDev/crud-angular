@@ -11,7 +11,12 @@
     <div class="w-100">
       <mat-table [dataSource]="courses">
         <ng-container matColumnDef="name">
-          <mat-header-cell class="justify-content-start align-items-center" *matHeaderCellDef> <h2 class="m-0 p-0"> Nome </h2> </mat-header-cell>
+          <mat-header-cell
+            class="justify-content-start align-items-center"
+            *matHeaderCellDef
+          >
+            <h2 class="m-0 p-0">Nome</h2>
+          </mat-header-cell>
           <mat-card-header>
             <mat-cell
               *matCellDef="let curso"
@@ -25,14 +30,24 @@
         </ng-container>
 
         <ng-container matColumnDef="category">
-          <mat-header-cell class="justify-content-start align-items-center" *matHeaderCellDef> <h2 class="m-0 p-0"> Categoria </h2> </mat-header-cell>
+          <mat-header-cell
+            class="justify-content-start align-items-center"
+            *matHeaderCellDef
+          >
+            <h2 class="m-0 p-0">Categoria</h2>
+          </mat-header-cell>
           <mat-cell
             *matCellDef="let curso"
             class="d-flex justify-content-start align-items-center"
           >
-            <mat-card-title class="align-items-center">{{
-              curso.category
-            }}</mat-card-title>
+            <mat-card-title class="align-items-center">
+              {{ curso.category }}
+              <mat-icon
+                aria-hidden="false"
+                aria-label="Categoria do Curso"
+                fontIcon="{{ curso.category | category }}"
+              ></mat-icon>
+            </mat-card-title>
           </mat-cell>
         </ng-container>
 
@@ -46,7 +61,9 @@
     </div>
 
     } @else {
-    <div class="d-flex justify-content-center align-items-center w-100 bg-secondary bg-secondary bg-opacity-50 p-4">
+    <div
+      class="d-flex justify-content-center align-items-center w-100 bg-secondary bg-secondary bg-opacity-50 p-4"
+    >
       <mat-spinner></mat-spinner>
     </div>
     }

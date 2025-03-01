@@ -5,16 +5,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { catchError, Observable, of } from 'rxjs';
 
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
+import { CategoryPipe } from "../../shared/pipes/category.pipe";
 
 
 @Component({
   selector: 'app-courses',
-  imports: [MatTableModule, MatCardModule, MatToolbarModule, MatProgressSpinnerModule, CommonModule],
+  imports: [MatTableModule, MatCardModule, MatToolbarModule, MatProgressSpinnerModule, CommonModule, MatIconModule, CategoryPipe],
   templateUrl: './courses.component.html',
   styleUrl: '/node_modules/bootstrap/dist/css/bootstrap.css'
 })
