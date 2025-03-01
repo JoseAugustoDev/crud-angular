@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
-import { Course } from '../model/course';
 import { CommonModule } from '@angular/common';
-
-import { CoursesService } from '../services/courses.service';
-import { Observable } from 'rxjs';
-
+import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { catchError, Observable, of } from 'rxjs';
+
+import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { Course } from '../model/course';
+import { CoursesService } from '../services/courses.service';
 
 
 @Component({
@@ -21,10 +22,25 @@ export class CoursesComponent {
 
   courses$: Observable<Course[]>;
 
-  constructor(private coursesService: CoursesService) {
+  constructor(
+    private coursesService: CoursesService,
+    public dialog: MatDialog
+  ) {
 
-    this.courses$ = this.coursesService.list();
+    this.courses$ = this.coursesService.list()
+      .pipe(
+        catchError(error => {
+          this.onError("Could not find courses!");
+
+          return of([]);
+        })
+      );
   }
 
+  onError(errorMsg: string) {
+    this.dialog.open(ErrorDialogComponent, {
+      data: errorMsg
+    });
+  }
 
 }
