@@ -12,6 +12,7 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
 import { CategoryPipe } from "../../shared/pipes/category.pipe";
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,9 @@ export class CoursesComponent {
 
   constructor(
     private coursesService: CoursesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
 
     this.courses$ = this.coursesService.list()
@@ -44,5 +47,9 @@ export class CoursesComponent {
       data: errorMsg
     });
   }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route})
+  };
 
 }

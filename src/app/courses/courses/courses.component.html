@@ -12,7 +12,7 @@
       <mat-table [dataSource]="courses">
         <ng-container matColumnDef="name">
           <mat-header-cell
-            class="justify-content-start align-items-center"
+            class="justify-content-center align-items-center"
             *matHeaderCellDef
           >
             <h2 class="m-0 p-0">Nome</h2>
@@ -20,7 +20,7 @@
           <mat-card-header>
             <mat-cell
               *matCellDef="let curso"
-              class="d-flex justify-content-start align-items-center"
+              class="d-flex justify-content-center align-items-center"
             >
               <mat-card-title class="align-items-center">{{
                 curso.name
@@ -31,14 +31,14 @@
 
         <ng-container matColumnDef="category">
           <mat-header-cell
-            class="justify-content-start align-items-center"
+            class="justify-content-center align-items-center"
             *matHeaderCellDef
           >
             <h2 class="m-0 p-0">Categoria</h2>
           </mat-header-cell>
           <mat-cell
             *matCellDef="let curso"
-            class="d-flex justify-content-start align-items-center"
+            class="d-flex justify-content-center align-items-center"
           >
             <mat-card-title class="align-items-center">
               {{ curso.category }}
@@ -51,11 +51,45 @@
           </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="actions">
+          <mat-header-cell
+            class="d-flex justify-content-center align-items-center"
+            *matHeaderCellDef
+          >
+            <button
+              mat-mini-fab
+              aria-label="Adicionar um Curso"
+              class="btn btn-primary d-flex justify-content-center align-items-center"
+            >
+              <mat-icon class="mat-18" (click)="onAdd()"> add </mat-icon>
+            </button>
+          </mat-header-cell>
+          <mat-cell
+          *matCellDef="let curso"
+          class="d-flex justify-content-evenly align-items-center"
+          >
+          <button
+            mat-mini-fab
+            aria-label="Editar Curso"
+            class="btn btn-warning d-flex justify-content-center align-items-center"
+          >
+            <mat-icon class="mat-18"> edit </mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            aria-label="Excluir Curso"
+            class="btn btn-danger d-flex justify-content-center align-items-center"
+          >
+            <mat-icon class="mat-18"> delete </mat-icon>
+          </button>
+          </mat-cell>
+        </ng-container>
+
         <mat-header-row
-          *matHeaderRowDef="['name', 'category']"
+          *matHeaderRowDef="['name', 'category', 'actions']"
         ></mat-header-row>
         <mat-row
-          *matRowDef="let curso; columns: ['name', 'category']"
+          *matRowDef="let curso; columns: ['name', 'category', 'actions']"
         ></mat-row>
       </mat-table>
     </div>
