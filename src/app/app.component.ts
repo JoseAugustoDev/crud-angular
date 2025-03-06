@@ -6,7 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   selector: 'app-root',
   imports: [RouterOutlet, MatToolbarModule],
   templateUrl: './app.component.html',
-  styleUrl: '../../node_modules/bootstrap/dist/css/bootstrap.css'
+  styleUrl: '/node_modules/bootstrap/dist/css/bootstrap.css'
 })
 export class AppComponent {
   title = 'crud-angular';
