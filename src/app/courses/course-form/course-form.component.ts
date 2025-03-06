@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatToolbar } from '@angular/material/toolbar';
-import { CoursesService } from '../services/courses.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbar } from '@angular/material/toolbar';
+
+import { CoursesService } from '../services/courses.service';
 
 
 @Component({
@@ -19,7 +21,7 @@ export class CourseFormComponent {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private service: CoursesService, private snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder, private service: CoursesService, private snackBar: MatSnackBar, private location: Location) {
     this.form = this.formBuilder.group({
       name: [null],
       category: [null]
@@ -45,7 +47,7 @@ export class CourseFormComponent {
   }
 
   onCancel() {
-    console.log("Cancelando!");
+    this.location.back();
   }
 
 }
