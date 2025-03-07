@@ -15,6 +15,7 @@ export class CoursesListComponent {
 
   @Input() courses: Course[] = [];
   @Output() add = new EventEmitter(false);
+  @Output() edit = new EventEmitter(false);
 
   constructor() {
 
@@ -22,5 +23,10 @@ export class CoursesListComponent {
 
   onAdd() {
     this.add.emit(true);
+  };
+
+  onEdit(course: Course) {
+    console.log(course);
+    this.edit.emit(course);
   };
 }

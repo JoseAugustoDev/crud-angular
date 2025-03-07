@@ -13,6 +13,7 @@
       class="w-100"
       [courses]="courses"
       (add)="onAdd()"
+      (edit)="onEdit($event)"
     ></app-courses-list>
 
     } @else {
