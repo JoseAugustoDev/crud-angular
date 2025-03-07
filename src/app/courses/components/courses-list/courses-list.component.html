@@ -49,8 +49,9 @@
         mat-mini-fab
         aria-label="Adicionar um Curso"
         class="btn btn-primary d-flex justify-content-center align-items-center"
+        (click)="onAdd()"
       >
-        <mat-icon class="mat-18" (click)="onAdd()"> add </mat-icon>
+        <mat-icon class="mat-18"> add </mat-icon>
       </button>
     </mat-header-cell>
     <mat-cell
@@ -61,13 +62,15 @@
         mat-mini-fab
         aria-label="Editar Curso"
         class="btn btn-warning d-flex justify-content-center align-items-center"
+        (click)="onEdit(curso)"
       >
-        <mat-icon class="mat-18" (click)="onEdit(curso)"> edit </mat-icon>
+        <mat-icon class="mat-18"> edit </mat-icon>
       </button>
       <button
         mat-mini-fab
         aria-label="Excluir Curso"
         class="btn btn-danger d-flex justify-content-center align-items-center"
+        (click)="onDelete(curso)"
       >
         <mat-icon class="mat-18"> delete </mat-icon>
       </button>
