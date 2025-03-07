@@ -1,0 +1,7 @@
+<mat-dialog-content>
+  <p>{{ data }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-primary mx-2 fw-bold" mat-button (click)="onConfirm(true)">Sim</button>
+  <button class="btn btn-primary mx-2 fw-bold" mat-button (click)="onConfirm(false)" cdkFocusInitial>Não</button>
+</mat-dialog-actions>
