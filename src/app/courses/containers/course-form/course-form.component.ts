@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbar } from '@angular/material/toolbar';
 
-import { CoursesService } from '../services/courses.service';
+import { CoursesService } from '../../services/courses.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { CoursesService } from '../services/courses.service';
   templateUrl: './course-form.component.html',
   styleUrl: '/node_modules/bootstrap/dist/css/bootstrap.css'
 })
-export class CourseFormComponent{
+export class CourseFormComponent {
 
   form: FormGroup;
 

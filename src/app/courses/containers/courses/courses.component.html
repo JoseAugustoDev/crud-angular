@@ -9,7 +9,11 @@
     </mat-toolbar>
 
     @if (courses$ | async; as courses) {
-    <app-courses-list class="w-100" [courses]="courses"></app-courses-list>
+    <app-courses-list
+      class="w-100"
+      [courses]="courses"
+      (add)="onAdd()"
+    ></app-courses-list>
 
     } @else {
     <div
