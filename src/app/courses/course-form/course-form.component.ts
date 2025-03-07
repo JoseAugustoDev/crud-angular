@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,16 +15,21 @@ import { CoursesService } from '../services/courses.service';
   selector: 'app-course-form',
   imports: [MatFormFieldModule, MatInputModule, ReactiveFormsModule, MatCardModule, MatToolbar, MatSelectModule, MatSnackBarModule],
   templateUrl: './course-form.component.html',
-  styleUrl: './course-form.component.scss'
+  styleUrl: '/node_modules/bootstrap/dist/css/bootstrap.css'
 })
-export class CourseFormComponent {
+export class CourseFormComponent{
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private service: CoursesService, private snackBar: MatSnackBar, private location: Location) {
+  constructor(
+    private formBuilder: NonNullableFormBuilder,
+    private service: CoursesService,
+    private snackBar: MatSnackBar,
+    private location: Location) {
+
     this.form = this.formBuilder.group({
-      name: [null],
-      category: [null]
+      name: [''],
+      category: ['']
     });
   }
 

@@ -1,23 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialog } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatTableModule } from '@angular/material/table';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
 import { catchError, Observable, of } from 'rxjs';
-
+import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 import { Course } from '../model/course';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { CoursesService } from '../services/courses.service';
-import { CategoryPipe } from "../../shared/pipes/category.pipe";
 import { ActivatedRoute, Router } from '@angular/router';
+import { CoursesListComponent } from "../courses-list/courses-list.component";
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @Component({
   selector: 'app-courses',
-  imports: [MatTableModule, MatCardModule, MatToolbarModule, MatProgressSpinnerModule, CommonModule, MatIconModule, CategoryPipe],
+  imports: [MatCardModule, CommonModule, CoursesListComponent, MatToolbarModule, MatProgressSpinnerModule],
   templateUrl: './courses.component.html',
   styleUrl: '/node_modules/bootstrap/dist/css/bootstrap.css'
 })
@@ -49,7 +46,7 @@ export class CoursesComponent {
   }
 
   onAdd() {
-    this.router.navigate(['new'], {relativeTo: this.route})
+    this.router.navigate(['new'], { relativeTo: this.route })
   };
 
 }
