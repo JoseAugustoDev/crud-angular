@@ -6,7 +6,11 @@
   <mat-card-content class="container 100 d-flex justify-content-center align-items-start flex-column my-2 p-0">
     <form [formGroup]="form" class="d-flex flex-column mx-0 p-0 w-100">
       <mat-form-field>
-        <input matInput placeholder="Nome" formControlName="name" />
+        <input matInput placeholder="Nome" formControlName="name" #name/>
+        <mat-hint align="end">{{ name.value.length || 0 }} / 100</mat-hint>
+        @if (form.get('name')?.invalid) {
+          <mat-error>{{ getErrorMessage("name") }}</mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field>

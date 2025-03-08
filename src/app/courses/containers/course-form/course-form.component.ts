@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,8 +33,8 @@ export class CourseFormComponent implements OnInit{
 
     this.form = this.formBuilder.group({
       id: [''],
-      name: [''],
-      category: ['']
+      name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+      category: ['', [Validators.required]]
     });
   }
 
@@ -68,6 +68,24 @@ export class CourseFormComponent implements OnInit{
 
   onCancel() {
     this.location.back();
+  }
+
+  getErrorMessage(fieldName: string) {
+    const field = this.form.get(fieldName);
+
+    const erros = this.form.getError(fieldName);
+
+    if (field?.hasError('minlength')) {
+      const requiredLenght = erros ? erros['requiredlength'] : 5;
+      return `Tamanho mínimo precisa ser de ${requiredLenght} caracteres`;
+    }
+
+    if (field?.hasError('maxlength')) {
+      const requiredLenght = erros ? erros['requiredlength'] : 50;
+      return `Tamanho máximo é de ${requiredLenght} caracteres`;
+    }
+
+    return 'Campo Obrigatório.';
   }
 
 }
